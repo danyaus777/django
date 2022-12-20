@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<section class="section__upper">
+    <div class="upper__profile">
+        <h2 class="profile__title">Профиль</h2>
+        <div class="profile__status">
+            <h4 class="status__title">Ваши заявки:</h4>
+            <a href="{% url 'profile' %}" class="status__link">Все</a>
+            <a href="{% url 'profile_new' %}" class="status__link">Новые</a>
+            <a href="{% url 'profile_work' %}" class="status__link">Принято в работу</a>
+            <a href="{% url 'profile_done' %}" class="status__link">Выполнено</a>
+        </div>
+    </div>
+</section>
+<section class="section__works">
+    <div class="container">
+        <div class="works__items">
+            {% for p in tickets %}
+            <div class="work__item">
+                {% if p.image %}
+                <p class="itemwork__image"><img src="{{ p.image.url }}" alt="foto"></p>
+                {% endif %}
+                <h5 class="itemwork__title">{{ p.title }}</h5>
+                <p class="itemwork__desc">{{ p.descript }}</p>
+                <p><strong>Категория: </strong>{{ p.category }}</p>
+                <p><strong>Дата создания: </strong>{{ p.created_date }}</p>
+                <p><strong>Статус: </strong>{{ p.get_status_display }}</p>
+                {% if p.status == '1' %}
+                <a href="{% url 'delete' p.id %}" class="item__delete"
+                    onclick="return confirm('Вы уверены, что хотите удалить запись??')">Удалить</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

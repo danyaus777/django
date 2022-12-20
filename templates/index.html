@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<section class="section__info" style="background-image: url(../static/img/bg-1.jpg)">
+    <div class="info__content">
+        <div class="info__text">
+            <h1 class="info__title">
+                ЭКСКЛЮЗИВНЫЙ ДИЗАЙН ИНТЕРЬЕРА
+                <br>
+                БОЛЬШИХ КВАРТИР И ДОМОВ
+            </h1>
+            <p class="info__subtitle">Избавьтесь от лишних затрат времени,
+                денег и нервов при ремонте, разработав <br>
+                полный дизайн-проект с надежной компанией.</p>
+        </div>
+        <div class="info__button">
+            <a href="{% url 'create' %}" class="button button-black">Создать заявку</a>
+        </div>
+    </div>
+</section>
+<section class="section__works">
+    <div class="container">
+        <div class="works__title">
+            <div class="works__column">
+                <h2 class="title__h2">Наши работы</h2>
+                <h5 class="title__inwork">Сейчас в работе: {{ count }}</h5>
+            </div>
+        </div>
+        <div class="works__items">
+            {% for p in tickets_main %}
+            <div class="work__item">
+                {% if p.image %}
+                <p class="itemwork__image"><img src="{{ p.image.url }}" alt="foto"></p>
+                {% endif %}
+                <h5 class="itemwork__title">{{ p.title }}</h5>
+                <p class="itemwork__desc">{{ p.descript }}</p>
+                <p><strong>Категория: </strong>{{ p.category }}</p>
+                <p><strong>Дата создания: </strong>{{ p.created_date }}</p>
+                <p><strong>Статус: </strong>{{ p.get_status_display }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="section__infografics">
+    <div class="infografics__item">
+        <h3 class="item__title">10 лет</h3>
+        <p class="item__desc">На рынке</p>
+    </div>
+    <div class="infografics__item">
+        <h3 class="item__title">500+</h3>
+        <p class="item__desc">Спроекцированных проектов</p>
+    </div>
+    <div class="infografics__item">
+        <h3 class="item__title">32</h3>
+        <p class="item__desc">Сотрудника в команде</p>
+    </div>
+    <div class="infografics__item">
+        <h3 class="item__title">80 000 м<sup>2</sup></h3>
+        <p class="item__desc">Отремонитрованной площади</p>
+    </div>
+</section>
+
+{% endblock %}

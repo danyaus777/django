@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Авторизация{% endblock %}
+{% block content %}
+<section class="section__register">
+    <div class="register__info">
+        <h2 class="register__title">Авторизация</h2>
+        <form method="POST" action="{% url 'login' %}" class="register__form">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" class="btn btn-success" value="Войти">
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Создание заявки{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<section class="section__create">
+    <div class="create__info">
+        <h2 class='create__title'>Создание заявки</h2>
+        <form method="POST" enctype="multipart/form-data" class="create__form">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-success" value="Создать заявку">
+        </form>
+        {% else %}
+        <h2>Доступ запрещен, вы не авторизованы</h2>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<section class="section__delete">
+    <div class="delete__accept">
+        <h2 class="accept__title">Удалить вашу заявку?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="Удалить" class="btn-red">
+        </form>
+    </div>
+</section>
+{% endblock %}
